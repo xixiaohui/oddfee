@@ -1,0 +1,21 @@
+<div class="col-sm-6">
+    <div class="card mb-1">
+        <div class="card-body row">
+            <div class="col">
+                <h5 class="card-title">
+                    <%= ringtone.title %>
+                </h5>
+                <p class="card-text">
+                    <%= ringtone.des %>
+                </p>
+                <a href="/ringtone/des?id=<%= ringtone._id %>" class="btn btn-primary" data-ringtoneid="<%= ringtone._id %>" data-ringtonetitle="<%= ringtone.title %>" data-ringtonedes="<%= ringtone.des %>" data-ringtoneurl="<%= ringtone.url %>">download</a>
+            </div>
+            <div class="col-4">
+
+                <button type="button" class="btn" onclick="playRingtone(this)" data-ringtoneid="<%= ringtone._id %>" data-ringtonetitle="<%= ringtone.title %>" data-ringtonedes="<%= ringtone.des %>" data-ringtoneurl="<%= ringtone.url %>" data-test='{ "a" : 1}'>
+                    <img src="/lib/bootstrap-icons/icons/play-circle.svg" alt="" width="48" height="48" title="play ringtone">
+                </button>
+            </div>
+        </div>
+    </div>
+</div>

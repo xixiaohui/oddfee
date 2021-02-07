@@ -1,0 +1,33 @@
+<div class="row">
+    <div class="col-sm-6">
+        <div class="card mb-1" id="ringtonedes">
+            <%- include('audioplayer')  %>
+        </div>
+    </div>
+
+    <div class="col-sm-6">
+        <div class="card mb-1">
+            <div class="card-body row">
+                <div class="col">
+                    <h5 class="card-title" id="ringtone-title">
+                        <%= ringtone.title %>
+                    </h5>
+                    <p class="card-text" id="ringtone-des">
+                        <%= ringtone.des %>
+                    </p>
+                    <button class="btn btn-primary card-text" id="ringtone-url" href="<%= ringtone.url %>" onclick="downloadRingtone(this)" data-path="<%= ringtone.url %>">
+                        download</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- <div class="row">
+    <div class="col">
+        <div class="card mt-2" id="ringtonedes">
+            <%- include('audioplayer')  %>
+        </div>
+    </div>
+</div> -->

@@ -1,0 +1,54 @@
+body {
+    padding: 50px;
+    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    background-color: black;
+}
+
+a {
+    color: #00B7FF;
+}
+
+@font-face {
+    font-family: myTitle;
+    src: url('/fonts/Anton/Anton-Regular.ttf');
+}
+
+@font-face {
+    font-family: myword;
+    src: url('/fonts/Lato/Lato-Regular.ttf');
+}
+
+.card-title {
+    font-family: myTitle;
+}
+
+.card-text {
+    font-family: myword;
+}
+
+
+/* .card-body {
+    background-color: gray;
+} */
+
+.myplaybutton {
+    position: relative;
+    top: 30px;
+    left: 20px;
+    /* background-color: purple; */
+}
+
+#ringtonedes {
+    height: 750px;
+    width: 100%;
+    background-color: purple;
+    border-radius: .25rem;
+}
+
+.content {
+    padding-left: 15px;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    border-radius: .25rem;
+}
