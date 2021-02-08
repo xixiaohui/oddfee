@@ -1,7 +1,7 @@
 body {
-    padding: 50px;
-    font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+    /* font: 14px "Lucida Grande", Helvetica, Arial, sans-serif; */
     background-color: black;
+    font-family: myword;
 }
 
 a {
@@ -51,4 +51,10 @@ a {
     width: 100%;
     background-color: black;
     border-radius: .25rem;
+}
+
+.my-dropdown-menu {
+    background-color: whitesmoke;
+    color: whitesmoke;
+    width: 540px;
 }

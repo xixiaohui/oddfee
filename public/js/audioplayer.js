@@ -354,25 +354,64 @@ function downloadUrlFile(url) {
     xhr.send();
 }
 
+//根据路径判断文件是否存在
+function isExsitFile(yourFileURL) {
+    var flag;
+    var xmlhttp;
+    if (window.XMLHttpRequest) {
+        xmlhttp = new XMLHttpRequest(); //其他浏览器
+    } else if (window.ActiveXObject) {
+        try {
+            xmlhttp = new ActiveXObject("Msxml2.XMLHTTP"); //旧版IE
+        } catch (e) {}
+        try {
+            xmlhttp = new ActiveXObject("Microsoft.XMLHTTP"); //新版IE
+        } catch (e) {}
+        if (!xmlhttp) {
+            window.alert("不能创建XMLHttpRequest对象");
+        }
+    }
+    xmlhttp.open("GET", yourFileURL, false);
+    xmlhttp.send();
+    if (xmlhttp.readyState == 4) {
+        if (xmlhttp.status == 200) {
+            console.log('find ringtone in resouce holder.')
+            flag = true;
+        } else {
+            flag = false;
+        }
+
+    }
+    return flag;
+}
 
 
 //数据放服务器上，提供下载
 function downloadRingtone(e) {
-    // let ringtoneurl = e.getAttribute('data-path');
-    let ringtoneurl = '/resource/Airtel/airtel-3g-best-tone.mp3'
+    let ringtoneurl = e.getAttribute('data-path');
+    // let ringtoneurl = '/ringtones/airtel-3g-best-tone.mp3'
 
+    console.log(ringtoneurl)
 
     let splitLength = ringtoneurl.split('/').length;
     fileName = ringtoneurl.split('/')[splitLength - 1];
-    // console.log(ringtoneurl);
-    // console.log(fileName);
+
+    //转换到资源目录
+    ringtoneFileUrl = '/allringtones/' + fileName;
+
+    if (isExsitFile(ringtoneFileUrl)) {
+        downloadUrlFile(ringtoneFileUrl);
+    } else {
+        //文件不存在
+        console.log("Can't find ringtone mp3 file.")
+    }
 
     //本地可以
     // downloadMp3(ringtoneurl, fileName);
     //本地可以
     // crosDownloadMp3(ringtoneurl, fileName);
     //本地可以
-    downloadUrlFile(ringtoneurl);
+    // downloadUrlFile(ringtoneFileName);
 
     //本地不可以
     // download(ringtoneurl, fileName, 'audio/mp3');

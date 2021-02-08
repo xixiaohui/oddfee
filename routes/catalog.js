@@ -1,4 +1,7 @@
 const express = require('express');
+
+// const { pathToRegexp, match, parse, compile } = require("path-to-regexp");
+
 const router = express.Router();
 
 const request = require('request');
@@ -13,5 +16,9 @@ router.get('/', ringtone_controller.ringtone_list);
 // router.get('/:id', ringtone_controller.ringtone_list);
 
 router.get('/des', ringtone_controller.ringtone_description);
+
+// const regexp = pathToRegexp("/.*all$/");
+
+router.get(/.*all$/, ringtone_controller.ringtone_catagory);
 
 module.exports = router;

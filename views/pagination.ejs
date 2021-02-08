@@ -2,13 +2,13 @@
     <nav aria-label="...">
         <ul class="pagination" id="page">
 
-            <li class="page-item " onclick="pageButtoneClick(this)">
+            <li class="page-item ">
                 <button class="page-link" id="first">First</button>
             </li>
-            <li class="page-item" onclick="pageButtoneClick(this)">
+            <li class="page-item">
                 <button class="page-link" id="prev" data-prepage="<%= (currentPage -1)  %>">Prev</button>
             </li>
-            <li class="page-item " aria-current="page" onclick="pageButtoneClick(this)">
+            <li class="page-item " aria-current="page">
                 <button class="page-link" id="next" data-nextpage="<%= (currentPage + 1)  %>">Next</button></li>
             <li class="page-item">
                 <button class="page-link" id="last" data-allpage="<%= allpages %>">Last</button>

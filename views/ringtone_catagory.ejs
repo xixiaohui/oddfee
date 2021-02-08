@@ -1,0 +1,20 @@
+<%- include("header") %>
+
+    <div class="container-md mt-5">
+        <div class="justify-content-center">
+            <h6>
+                <%= title %>
+            </h6>
+        </div>
+
+
+        <% for( let index=0; index < ringtones.length - 1; index+=2 ) { %>
+
+            <%- include('card',{ ringtone: ringtones[index],ringtone_odd:ringtones[index + 1] } ) %>
+
+                <% } %>
+
+                    <%- include('pagination',{allpages:allpages,currentPage:currentPage}) %>
+    </div>
+
+    <%- include("foot") %>
