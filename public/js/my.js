@@ -118,6 +118,7 @@ function playRingtone(e) {
 function addCatagoriesTag() {
 
     console.log('addCatagoriesTag');
+    // throw new Error("some error happened");
 
     const tags = ['Love', 'Joker', 'BGM', 'Nokia', 'Telugu', 'Oppo', 'iPhone', 'Vivo', 'Xiaomi', 'Blackberry',
         'Infinix', 'Call', 'Samsung', 'Oneplus', 'Sounds', 'Islamic', 'Airtel', 'English', 'Tik Tok', 'Warning',
@@ -146,6 +147,89 @@ function addCatagoriesTag() {
         }
         menu.appendChild(element);
     }
+}
+
+function getScrollTop() {
+    var scrollTop = 0,
+        bodyScrollTop = 0,
+        documentScrollTop = 0;
+    if (document.body) {
+        bodyScrollTop = document.body.scrollTop;
+    }
+    if (document.documentElement) {
+        documentScrollTop = document.documentElement.scrollTop;
+    }
+    scrollTop = (bodyScrollTop - documentScrollTop > 0) ? bodyScrollTop : documentScrollTop;
+    return scrollTop;
+}
+//文档的总高度
+function getScrollHeight() {
+    var scrollHeight = 0,
+        bodyScrollHeight = 0,
+        documentScrollHeight = 0;
+    if (document.body) {
+        bodyScrollHeight = document.body.scrollHeight;
+    }
+    if (document.documentElement) {
+        documentScrollHeight = document.documentElement.scrollHeight;
+    }
+    scrollHeight = (bodyScrollHeight - documentScrollHeight > 0) ? bodyScrollHeight : documentScrollHeight;
+    return scrollHeight;
+}
+
+function getWindowHeight() {
+    var windowHeight = 0;
+    if (document.compatMode == "CSS1Compat") {
+        windowHeight = document.documentElement.clientHeight;
+    } else {
+        windowHeight = document.body.clientHeight;
+    }
+    return windowHeight;
+}
+window.onscroll = function() {
+    if (getScrollTop() + getWindowHeight() == getScrollHeight()) {
+        // alert("已经到最底部了！!");
+        addLoadingData();
+    }
+};
+
+let currentPage = 1;
+//手机上加载更多铃声
+function addLoadingData() {
+    console.log("Bottom.");
+
+    const http = new XMLHttpRequest();
+
+    // const url = window.location.search;
+    // let currentPage = 1;
+    // if (url.indexOf("?") != -1) {
+    //     let str = url.substr(1);
+    //     let strs = str.split("=");
+    //     currentPage = strs[1];
+    // }
+    // currentPage = parseInt(currentPage) + 1;
 
 
+    console.log(currentPage);
+    const requestUrl = '/ringtone/data?page=' + currentPage.toString();
+
+
+    http.open("GET", requestUrl);
+
+    http.send();
+
+    http.onreadystatechange = function() {
+        if (this.readyState == 4 && this.status == 200) {
+
+            const result = JSON.parse(http.responseText);
+            console.log(result);
+            currentPage += 1;
+
+
+            //把数据添加到页面上去
+
+
+
+        }
+    }
 }

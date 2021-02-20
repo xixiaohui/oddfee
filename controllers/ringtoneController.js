@@ -135,3 +135,49 @@ function getDataByKeyWord(req, res, count, keyword) {
             })
         });
 };
+
+
+//获取铃声数据
+exports.ringtone_load_one_page = (req, res) => {
+    sendRingtonesData(req, res);
+
+    // res.send(data);
+}
+
+function sendRingtonesData(req, res) {
+    let currentPage = 0;
+
+    if (req.query.page == undefined) {
+        currentPage = 0;
+    } else {
+        currentPage = req.query.page - 1;
+        console.log(req.query.page);
+    }
+
+    Ringtone.countDocuments({}, (err, count) => {
+
+        console.log(count);
+
+        const limit = 10;
+        const onePageCount = 10;
+        const allpages = Math.floor(count / onePageCount);
+
+        console.log('allpages= ' + allpages);
+
+        Ringtone.find()
+            .sort([
+                ['title', 'ascending']
+            ])
+            .skip(onePageCount * currentPage)
+            .limit(limit)
+            .exec(function(err, list_ringtones) {
+                if (err) { return next(err); }
+
+                // console.log(list_ringtones);
+
+                res.send(list_ringtones)
+            });
+    })
+
+
+}
