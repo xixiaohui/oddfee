@@ -7,14 +7,16 @@
             </h6>
         </div>
 
+        <div id="ringtonelist">
+            <% for( let index=0; index < ringtones.length - 1; index+=2 ) { %>
 
-        <% for( let index=0; index < ringtones.length - 1; index+=2 ) { %>
+                <%- include('card',{ ringtone: ringtones[index],ringtone_odd:ringtones[index + 1] } ) %>
 
-            <%- include('card',{ ringtone: ringtones[index],ringtone_odd:ringtones[index + 1] } ) %>
+                    <% } %>
 
-                <% } %>
+                        <%- include('pagination',{allpages:allpages,currentPage:currentPage}) %>
+        </div>
 
-                    <%- include('pagination',{allpages:allpages,currentPage:currentPage}) %>
     </div>
 
     <%- include("foot") %>

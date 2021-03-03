@@ -68,6 +68,7 @@ function loadTrack(track_index) {
     curr_track.src = track_list[track_index].path;
     curr_track.load();
 
+
     track_art.style.backgroundImage = "url(" + track_list[track_index].image + ")";
     track_name.textContent = track_list[track_index].name;
     track_artist.textContent = track_list[track_index].artist;
@@ -86,8 +87,6 @@ function resetValues() {
     total_duration.textContent = "00:00";
     seek_slider.value = 0;
 }
-
-
 
 function playpauseTrack() {
     if (!isPlaying) playTrack();
@@ -155,98 +154,6 @@ function seekUpdate() {
 }
 
 
-// function downloadRingtoneBlob(e) {
-//     let url = e.getAttribute('data-path')
-//     console.log(url);
-
-//     let link = document.createElement('a');
-//     link.download = 'myringtone.mp3';
-//     let blob = new Blob(['Hello, world!'], { type: 'audio/mp3' });
-//     link.href = URL.createObjectURL(blob);
-//     link.click();
-//     URL.revokeObjectURL(link.href);
-
-// }
-
-// function downloadURL(url, name = '') {
-//     const link = document.createElement('a')
-//     link.download = name
-//     link.href = url
-//     if ('download' in document.createElement('a')) {
-//         document.body.appendChild(link)
-//         link.click()
-//         document.body.removeChild(link)
-//     } else {
-//         // 对不支持download进行兼容
-//         click(link, (link.target = '_blank'))
-//     }
-// }
-
-// function click(node) {
-//     try {
-//         node.dispatchEvent(new MouseEvent('click'))
-//     } catch (e) {
-//         var evt = document.createEvent('MouseEvents')
-//         evt.initMouseEvent(
-//             'click',
-//             true,
-//             true,
-//             window,
-//             0,
-//             0,
-//             0,
-//             80,
-//             20,
-//             false,
-//             false,
-//             false,
-//             false,
-//             0,
-//             null
-//         )
-//         node.dispatchEvent(evt)
-//     }
-// }
-
-// // 创建blob对象
-// function downloadBlob(url) {
-//     return new Promise((resolve, reject) => {
-//         var xhr = new XMLHttpRequest()
-//         xhr.open('GET', url)
-//         xhr.responseType = 'blob'
-//         xhr.onload = function() {
-//             if (xhr.status === 200) {
-//                 resolve(xhr.response)
-//             } else {
-//                 reject(new Error(xhr.statusText || 'Download failed.'))
-//             }
-//         }
-//         xhr.onerror = function() {
-//             reject(new Error('Download failed.'))
-//         }
-//         xhr.send()
-//     })
-// }
-
-// // 主要用于下载导出的代码
-// function downloadFile(url, fileName = '') {
-//     return downloadBlob(url, fileName)
-//         .then(resp => {
-//             if (resp.blob) {
-//                 return resp.blob()
-//             } else {
-//                 return new Blob([resp])
-//             }
-//         })
-//         .then(blob => URL.createObjectURL(blob))
-//         .then(url => {
-//             downloadURL(url, fileName)
-//             URL.revokeObjectURL(url)
-//         })
-//         .catch(err => {
-//             throw new Error(err.message)
-//         })
-// }
 
 const downloadMp3 = (filePath, fileName) => {
     fetch(filePath).then(res => res.blob()).then(blob => {
@@ -300,9 +207,6 @@ const crosDownloadMp3 = (filePath, fileName) => {
 
         });
 }
-
-
-
 
 
 
@@ -403,7 +307,8 @@ function downloadRingtone(e) {
         downloadUrlFile(ringtoneFileUrl);
     } else {
         //文件不存在
-        console.log("Can't find ringtone mp3 file.")
+        alert("Can't find the mp3 file.");
+        console.log("Can't find the mp3 file.");
     }
 
     //本地可以

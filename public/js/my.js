@@ -186,14 +186,29 @@ function getWindowHeight() {
     }
     return windowHeight;
 }
+
 window.onscroll = function() {
     if (getScrollTop() + getWindowHeight() == getScrollHeight()) {
-        // alert("已经到最底部了！!");
-        addLoadingData();
+        console.log("已经到最底部了!");
+
+        let href = window.location.href;
+        console.log(href);
+        if (href.endsWith('ringtone') || href.endsWith('all')) {
+            addLoadingData();
+        }
+
     }
 };
 
-let currentPage = 1;
+let currentPage = parseInt(window.sessionStorage.getItem('currentPage'));
+if (!currentPage) {
+    console.log("currentPage is not saved.");
+    currentPage = 1;
+} else {
+    console.log("currentPage is saved.");
+    console.log(typeof(currentPage));
+}
+
 //手机上加载更多铃声
 function addLoadingData() {
     console.log("Bottom.");
@@ -209,11 +224,12 @@ function addLoadingData() {
     // }
     // currentPage = parseInt(currentPage) + 1;
 
-
     console.log(currentPage);
+    //保存到session中
+    window.sessionStorage.setItem('currentPage', currentPage);
     const requestUrl = '/ringtone/data?page=' + currentPage.toString();
 
-
+    console.log(requestUrl);
     http.open("GET", requestUrl);
 
     http.send();
@@ -221,15 +237,58 @@ function addLoadingData() {
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
 
-            const result = JSON.parse(http.responseText);
-            console.log(result);
+            const results = JSON.parse(http.responseText);
+            console.log(results);
             currentPage += 1;
 
-
             //把数据添加到页面上去
-
-
-
+            insertArrayRingtones(results);
         }
     }
+}
+
+//插入一组铃声
+function insertArrayRingtones(ringtones) {
+
+    for (let index = 0; index < ringtones.length; index++) {
+        const element = ringtones[index];
+        insertOneRingtone(element);
+
+    }
+}
+
+//插入一个铃声
+function insertOneRingtone(ringtone) {
+
+    let ringtone_list = document.querySelector('#ringtonelist');
+    // console.log(ringtone_list.length);
+    // console.log(ringtone_list);
+
+    let popContent = [
+        '<div class="row">',
+        '<div class="col-sm-6">',
+        '<div class="card mb-1">',
+        '<div class="card-body row">',
+        '<div class="col">',
+        '<h5 class="card-title">',
+        `${ringtone.title}`,
+        '</h5>',
+        '<p class="card-text">',
+        `${ringtone.des}`,
+        '</p>',
+        `<a href="/ringtone/des?id=${ringtone._id}" class="btn btn-primary" data-ringtoneid="${ringtone._id}" data-ringtonetitle="${ringtone.title}" data-ringtonedes="${ringtone.des}" data-ringtoneurl="${ringtone.url}">download</a>`,
+        '</div>',
+        '<div class="col-4">',
+
+        `<button type="button" class="btn" onclick="playRingtone(this)" data-ringtoneid="${ringtone._id}" data-ringtonetitle="${ringtone.title}" data-ringtonedes="${ringtone.des}" data-ringtoneurl="${ringtone.url}" data-test='{ "a" : 1}'>`,
+        `<img src="/lib/bootstrap-icons/icons/play-circle.svg" alt="" width="48" height="48" title="play ringtone">`,
+        `</button>`,
+        `</div>`,
+        `</div>`,
+        `</div>`,
+        `</div>`,
+        `</div>`
+    ].join('');
+
+    ringtone_list.innerHTML += popContent;
 }
