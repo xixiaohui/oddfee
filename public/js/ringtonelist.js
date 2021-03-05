@@ -4,8 +4,10 @@ import { isReachToBottom, isMobile, loadCatagoriesTag } from './global.js';
 window.onscroll = function() {
     if (isReachToBottom()) {
         console.log("已经到最底部了!");
+        alert("hi");
 
         if (isMobile()) {
+            alert("添加数据");
             addLoadingData();
         }
     }
@@ -73,6 +75,7 @@ function addLoadingData() {
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
 
+            alert("获取数据成功");
             const results = JSON.parse(http.responseText);
             // console.log(results);
 
