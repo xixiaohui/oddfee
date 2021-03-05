@@ -1,17 +1,38 @@
 import { isReachToBottom, isMobile, loadCatagoriesTag } from './global.js';
 
 
-window.onscroll = function() {
-    if (isReachToBottom()) {
+
+
+document.addEventListener('touchmove', function() {
+    let scrollTopH = document.body.scrollTop || document.documentElement.scrollTop;
+    var clientHeight = document.documentElement.scrollTop === 0 ? document.body.clientHeight : document.documentElement.clientHeight;
+    var scrollTop = document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop;
+    var scrollHeight = document.documentElement.scrollTop === 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
+    if (scrollTop != 0 && clientHeight + scrollTop == scrollHeight) {
+
+
         console.log("已经到最底部了!");
-        alert("hi");
+        // alert("已经到最底部了!");
 
         if (isMobile()) {
-            alert("添加数据");
+            // alert("添加数据");
             addLoadingData();
         }
     }
-};
+})
+
+// window.onscroll = function() {
+
+//     if (isReachToBottom()) {
+//         console.log("已经到最底部了!");
+//         alert("已经到最底部了!");
+
+//         if (isMobile()) {
+//             // alert("添加数据");
+//             addLoadingData();
+//         }
+//     }
+// };
 
 window.onload = function() {
 
@@ -75,7 +96,7 @@ function addLoadingData() {
     http.onreadystatechange = function() {
         if (this.readyState == 4 && this.status == 200) {
 
-            alert("获取数据成功");
+            // alert("获取数据成功");
             const results = JSON.parse(http.responseText);
             // console.log(results);
 
