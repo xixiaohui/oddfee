@@ -25,4 +25,7 @@ router.get(/.*all$/, ringtone_controller.ringtone_catagory);
 //测试请求数据
 router.get('/data', ringtone_controller.ringtone_load_one_page);
 
+//请求分类数据
+router.get('/catagory', ringtone_controller.ringtone_load_catagory_one_page);
+
 module.exports = router;

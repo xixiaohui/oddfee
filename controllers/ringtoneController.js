@@ -137,7 +137,7 @@ function getDataByKeyWord(req, res, count, keyword) {
 };
 
 
-//获取铃声数据
+//从全部铃声中获取数据
 exports.ringtone_load_one_page = (req, res) => {
     sendRingtonesData(req, res);
 
@@ -178,6 +178,53 @@ function sendRingtonesData(req, res) {
                 res.send(list_ringtones)
             });
     })
+}
 
+//从全部铃声中获取数据
+exports.ringtone_load_catagory_one_page = (req, res) => {
+    sendRingtonesCatagoryData(req, res);
 
+    // res.send(data);
+}
+
+function sendRingtonesCatagoryData(req, res) {
+    let currentPage = 0;
+
+    if (req.query.page == undefined) {
+        currentPage = 0;
+    } else {
+        currentPage = req.query.page - 1;
+        console.log(req.query.page);
+    }
+
+    let keyword = req.query.keyword;
+
+    console.log("keyword = " + keyword);
+
+    Ringtone.countDocuments({}, (err, count) => {
+
+        console.log(count);
+
+        const limit = 10;
+        const onePageCount = 10;
+        const allpages = Math.floor(count / onePageCount);
+
+        console.log('allpages= ' + allpages);
+
+        Ringtone.find({
+                des: { $regex: keyword }
+            })
+            .sort([
+                ['title', 'ascending']
+            ])
+            .skip(onePageCount * currentPage)
+            .limit(limit)
+            .exec(function(err, list_ringtones) {
+                if (err) { return next(err); }
+
+                // console.log(list_ringtones);
+
+                res.send(list_ringtones)
+            });
+    })
 }
