@@ -84,7 +84,20 @@ function getWindowHeight() {
 
 export function isReachToBottom() {
 
-    return (getScrollTop() + getWindowHeight() == getScrollHeight());
+    // return (getScrollTop() + getWindowHeight() == getScrollHeight());
+
+    return isReachToBottomJavascript();
+}
+
+function isReachToBottomJavascript() {
+    var windowH = document.documentElement.clientHeight; //网页可视区域高度
+    //windowH = window.innerHeight;
+    //windowH=window.scrollY;
+    var documentH = document.documentElement.offsetHeight;
+    //documentH=document.documentElement.offsetHeight;
+    var scrollH = document.documentElement.scrollTop;
+
+    return (windowH + scrollH >= documentH);
 }
 
 
