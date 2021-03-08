@@ -104,7 +104,7 @@ function isReachToBottomJavascript() {
     //     alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
     // }
 
-    return (windowH + scrollH >= documentH - 56);
+    return (windowH + scrollH >= documentH - 60);
 }
 
 
