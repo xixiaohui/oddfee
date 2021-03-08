@@ -180,25 +180,3 @@ function insertOneRingtone(ringtone) {
 
     ringtone_list.innerHTML += popContent;
 }
-
-
-
-// document.getElementById("myfoot").addEventListener('click', function() {
-
-//     isReachToBottomJavascript();
-// })
-
-// function isReachToBottomJavascript() {
-//     //网页可视区域高度
-//     var windowH = document.documentElement.clientHeight;
-//     var documentH = document.documentElement.offsetHeight;
-//     var scrollH = document.documentElement.scrollTop;
-
-//     console.log("windowH = " + windowH);
-//     console.log("scrollH = " + scrollH);
-//     console.log("documentH = " + documentH);
-
-//     alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
-
-//     return (windowH + scrollH >= documentH);
-// }

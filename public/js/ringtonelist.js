@@ -165,9 +165,7 @@ function insertOneRingtone(ringtone) {
 }
 
 
-
 // document.getElementById("myfoot").addEventListener('click', function() {
-
 //     // isReachToBottomJavascript();
 // })
 
