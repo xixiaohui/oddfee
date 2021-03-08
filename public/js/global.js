@@ -100,9 +100,9 @@ function isReachToBottomJavascript() {
         console.log("windowH = " + windowH);
         console.log("scrollH = " + scrollH);
         console.log("documentH = " + documentH);
-        alert("已经到最底部了!");
+        // alert("已经到最底部了!");
 
-        alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
+        // alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
     }
 
     return (windowH + scrollH >= documentH);
