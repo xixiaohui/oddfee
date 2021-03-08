@@ -91,21 +91,20 @@ export function isReachToBottom() {
 
 function isReachToBottomJavascript() {
     //网页可视区域高度
-    var windowH = document.documentElement.clientHeight + 50;
+    var windowH = document.documentElement.clientHeight;
     var documentH = document.documentElement.offsetHeight;
     var scrollH = document.documentElement.scrollTop;
 
 
-    if (windowH + scrollH >= documentH) {
-        console.log("windowH = " + windowH);
-        console.log("scrollH = " + scrollH);
-        console.log("documentH = " + documentH);
-        // alert("已经到最底部了!");
+    // if (windowH + scrollH >= documentH) {
+    //     console.log("windowH = " + windowH);
+    //     console.log("scrollH = " + scrollH);
+    //     console.log("documentH = " + documentH);
+    //     alert("已经到最底部了!");
+    //     alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
+    // }
 
-        // alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
-    }
-
-    return (windowH + scrollH >= documentH);
+    return (windowH + scrollH >= documentH - 56);
 }
 
 

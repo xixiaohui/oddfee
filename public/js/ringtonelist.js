@@ -168,7 +168,7 @@ function insertOneRingtone(ringtone) {
 
 document.getElementById("myfoot").addEventListener('click', function() {
 
-    isReachToBottomJavascript();
+    // isReachToBottomJavascript();
 })
 
 function isReachToBottomJavascript() {
