@@ -95,15 +95,6 @@ function isReachToBottomJavascript() {
     var documentH = document.documentElement.offsetHeight;
     var scrollH = document.documentElement.scrollTop;
 
-
-    // if (windowH + scrollH >= documentH) {
-    //     console.log("windowH = " + windowH);
-    //     console.log("scrollH = " + scrollH);
-    //     console.log("documentH = " + documentH);
-    //     alert("已经到最底部了!");
-    //     alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
-    // }
-
     return (windowH + scrollH >= documentH - 60);
 }
 

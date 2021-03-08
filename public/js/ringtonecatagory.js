@@ -183,22 +183,22 @@ function insertOneRingtone(ringtone) {
 
 
 
-document.getElementById("myfoot").addEventListener('click', function() {
+// document.getElementById("myfoot").addEventListener('click', function() {
 
-    isReachToBottomJavascript();
-})
+//     isReachToBottomJavascript();
+// })
 
-function isReachToBottomJavascript() {
-    //网页可视区域高度
-    var windowH = document.documentElement.clientHeight;
-    var documentH = document.documentElement.offsetHeight;
-    var scrollH = document.documentElement.scrollTop;
+// function isReachToBottomJavascript() {
+//     //网页可视区域高度
+//     var windowH = document.documentElement.clientHeight;
+//     var documentH = document.documentElement.offsetHeight;
+//     var scrollH = document.documentElement.scrollTop;
 
-    console.log("windowH = " + windowH);
-    console.log("scrollH = " + scrollH);
-    console.log("documentH = " + documentH);
+//     console.log("windowH = " + windowH);
+//     console.log("scrollH = " + scrollH);
+//     console.log("documentH = " + documentH);
 
-    alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
+//     alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
 
-    return (windowH + scrollH >= documentH);
-}
+//     return (windowH + scrollH >= documentH);
+// }
