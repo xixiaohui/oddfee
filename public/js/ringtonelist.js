@@ -20,8 +20,6 @@ import { isReachToBottom, isMobile, loadCatagoriesTag } from './global.js';
 window.onscroll = function() {
     if (isReachToBottom()) {
         console.log("已经到最底部了!");
-        alert("已经到最底部了!");
-
         if (isMobile()) {
             // alert("添加数据");
             addLoadingData();
