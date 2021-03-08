@@ -90,7 +90,8 @@ export function isReachToBottom() {
 }
 
 function isReachToBottomJavascript() {
-    var windowH = document.documentElement.clientHeight; //网页可视区域高度
+    //网页可视区域高度
+    var windowH = document.documentElement.clientHeight + 50;
     var documentH = document.documentElement.offsetHeight;
     var scrollH = document.documentElement.scrollTop;
 
