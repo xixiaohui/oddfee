@@ -85,19 +85,30 @@ function getWindowHeight() {
 export function isReachToBottom() {
 
     // return (getScrollTop() + getWindowHeight() == getScrollHeight());
-
-    return isReachToBottomJavascript();
+    // return isReachToBottomJavascript();
+    return isReachToBottomJavascriptSecond();
 }
 
 function isReachToBottomJavascript() {
     //网页可视区域高度
     var windowH = document.documentElement.clientHeight;
-    var documentH = document.documentElement.offsetHeight || window.pageYOffset || document.body.scrollTop;;
+    var documentH = document.documentElement.offsetHeight;
     var scrollH = document.documentElement.scrollTop;
 
     return (windowH + scrollH >= documentH - 60);
 }
 
+
+function isReachToBottomJavascriptSecond() {
+    // @var int totalPageHeight
+    var totalPageHeight = document.body.scrollHeight;
+
+    // @var int scrollPoint
+    var scrollPoint = window.scrollY + window.innerHeight;
+
+    // check if we hit the bottom of the page
+    return (scrollPoint >= totalPageHeight);
+}
 
 export function isMobile() {
     return ((navigator.userAgent.match(/(phone|pad|pod|iPhone|iPod|ios|iPad|Android|Mobile|BlackBerry|IEMobile|MQQBrowser|JUC|Fennec|wOSBrowser|BrowserNG|WebOS|Symbian|Windows Phone)/i)));

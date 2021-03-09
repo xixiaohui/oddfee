@@ -166,13 +166,14 @@ function insertOneRingtone(ringtone) {
 
 
 document.getElementById("myfoot").addEventListener('click', function() {
-    isReachToBottomJavascript();
+    // isReachToBottomJavascript();
+    isReachToBottomJavascriptSecond();
 })
 
 function isReachToBottomJavascript() {
     //网页可视区域高度
     var windowH = document.documentElement.clientHeight;
-    var documentH = document.documentElement.offsetHeight || window.pageYOffset || document.body.scrollTop;;
+    var documentH = document.documentElement.offsetHeight || window.pageYOffset || document.body.scrollTop;
     var scrollH = document.documentElement.scrollTop;
 
     console.log("windowH = " + windowH);
@@ -184,51 +185,15 @@ function isReachToBottomJavascript() {
     return (windowH + scrollH >= documentH);
 }
 
-// function ListenerScoller() {
-//     var pageIndex = 1;
-//     var startX, startY;
-//     document.addEventListener('touchstart', function(ev) {
-//         startX = ev.touches[0].pageX;
-//         startY = ev.touches[0].pageY;
-//     }, false);
+function isReachToBottomJavascriptSecond() {
+    // @var int totalPageHeight
+    var totalPageHeight = document.body.scrollHeight;
 
+    // @var int scrollPoint
+    var scrollPoint = window.scrollY + window.innerHeight;
 
-//     let _this = this;
-//     document.addEventListener('touchend', function(ev) {
-//         var endX, endY;
-//         endX = ev.changedTouches[0].pageX;
-//         endY = ev.changedTouches[0].pageY;
-//         var dy = startY - endY;
-//         var reach = Boolean;
-//         var scrollTop = document.documentElement.scrollTop || window.pageYOffset || document.body.scrollTop;
+    alert("totalPageHeight = " + totalPageHeight + "scrollPoint = " + scrollPoint);
 
-//         console.log(scrollTop);
-//         document.documentElement.scrollHeight == document.documentElement.clientHeight || document.body.clientHeight + scrollTop ? reach = true : reach = false
-//         console.log(reach)
-
-//         if (dy > 30 && reach) {
-//             pageIndex++;
-//             _this.setState({
-//                 isLoad: true
-//             })
-
-//             _ENV.post(_ENV.HOST + '/distributor/ticket-record?page=' + pageIndex).then(data => {
-//                 let newData = data.data.list;
-//                 let original = _this.state.buys;
-//                 if (data.data.isLastPage) {
-//                     _this.setState({
-//                         loadText: '没有更多数据'
-//                     })
-//                 }
-//                 let arr = original.concat(newData);
-//                 console.log(arr);
-//                 _this.setState({
-//                     buys: arr
-//                 });
-//             }).catch(error => {
-//                 console.log(error);
-//             });
-//         }
-
-//     }, false);
-// }
+    // check if we hit the bottom of the page
+    return (scrollPoint >= totalPageHeight);
+}
