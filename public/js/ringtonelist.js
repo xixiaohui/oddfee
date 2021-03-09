@@ -165,35 +165,33 @@ function insertOneRingtone(ringtone) {
 }
 
 
-document.getElementById("myfoot").addEventListener('click', function() {
-    // isReachToBottomJavascript();
-    isReachToBottomJavascriptSecond();
-})
+// document.getElementById("myfoot").addEventListener('click', function() {
+//     isReachToBottomJavascript();
+//     isReachToBottomJavascriptSecond();
+// })
 
-function isReachToBottomJavascript() {
-    //网页可视区域高度
-    var windowH = document.documentElement.clientHeight;
-    var documentH = document.documentElement.offsetHeight || window.pageYOffset || document.body.scrollTop;
-    var scrollH = document.documentElement.scrollTop;
+// function isReachToBottomJavascript() {
+//     //网页可视区域高度
+//     var windowH = document.documentElement.clientHeight;
+//     var documentH = document.documentElement.offsetHeight || window.pageYOffset || document.body.scrollTop;
+//     var scrollH = document.documentElement.scrollTop;
 
-    console.log("windowH = " + windowH);
-    console.log("scrollH = " + scrollH);
-    console.log("documentH = " + documentH);
+//     console.log("windowH = " + windowH);
+//     console.log("scrollH = " + scrollH);
+//     console.log("documentH = " + documentH);
 
-    alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
+//     alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
+//     return (windowH + scrollH >= documentH);
+// }
 
-    return (windowH + scrollH >= documentH);
-}
+// function isReachToBottomJavascriptSecond() {
+//     // @var int totalPageHeight
+//     var totalPageHeight = document.body.scrollHeight;
 
-function isReachToBottomJavascriptSecond() {
-    // @var int totalPageHeight
-    var totalPageHeight = document.body.scrollHeight;
+//     // @var int scrollPoint
+//     var scrollPoint = window.scrollY + window.innerHeight;
+//     alert("totalPageHeight = " + totalPageHeight + "scrollPoint = " + scrollPoint);
 
-    // @var int scrollPoint
-    var scrollPoint = window.scrollY + window.innerHeight;
-
-    alert("totalPageHeight = " + totalPageHeight + "scrollPoint = " + scrollPoint);
-
-    // check if we hit the bottom of the page
-    return (scrollPoint >= totalPageHeight);
-}
+//     // check if we hit the bottom of the page
+//     return (scrollPoint >= totalPageHeight);
+// }

@@ -86,7 +86,7 @@ export function isReachToBottom() {
 
     // return (getScrollTop() + getWindowHeight() == getScrollHeight());
     // return isReachToBottomJavascript();
-    return isReachToBottomJavascriptSecond();
+    return isReachToBottomJavascriptSecond() || isReachToBottomJavascript();
 }
 
 function isReachToBottomJavascript() {
