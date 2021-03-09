@@ -20,30 +20,21 @@ window.onload = function() {
     }
 }
 
-
-// document.addEventListener('touchmove', function() {
-//     let scrollTopH = document.body.scrollTop || document.documentElement.scrollTop;
-//     var clientHeight = document.documentElement.scrollTop === 0 ? document.body.clientHeight : document.documentElement.clientHeight;
-//     var scrollTop = document.documentElement.scrollTop === 0 ? document.body.scrollTop : document.documentElement.scrollTop;
-//     var scrollHeight = document.documentElement.scrollTop === 0 ? document.body.scrollHeight : document.documentElement.scrollHeight;
-//     if (scrollTop != 0 && clientHeight + scrollTop == scrollHeight) {
-
-//         console.log("已经到最底部了!");
-//         // alert("已经到最底部了!");
-//         if (isMobile()) {
-//             // alert("添加数据");
-//             addLoadingData();
-//         }
-//     }
-// })
-
+let startLoading = true;
 
 window.onscroll = function() {
 
-    if (isReachToBottom()) {
+    if (startLoading && isReachToBottom()) {
         console.log("已经到最底部了!");
 
         if (isMobile()) {
+            //不可以加载
+            startLoading = false;
+
+            //显示loading
+            document.getElementById('loading').setAttribute("style", "visibility:visible");
+
+            //加载数据
             addLoadingData();
         }
     }
@@ -118,6 +109,12 @@ function addLoadingData() {
             currentPage += 1;
             //插入加载的铃声到页面
             insertRingtoneDatatToHtml(results)
+
+            //结束显示loading
+            document.getElementById('loading').setAttribute("style", "visibility:hidden");
+
+            //允许加载
+            startLoading = true;
         }
     }
 }

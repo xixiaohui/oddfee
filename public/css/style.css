@@ -80,7 +80,7 @@ a {
     .mypagination {
         visibility: hidden;
     }
-    .loading {
+    #loading {
         visibility: hidden;
     }
 }
@@ -113,7 +113,7 @@ a {
     .mypagination {
         visibility: visible;
     }
-    .loading {
+    #loading {
         visibility: hidden;
     }
 }
