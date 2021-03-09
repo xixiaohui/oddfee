@@ -92,7 +92,7 @@ export function isReachToBottom() {
 function isReachToBottomJavascript() {
     //网页可视区域高度
     var windowH = document.documentElement.clientHeight;
-    var documentH = document.documentElement.offsetHeight;
+    var documentH = document.documentElement.offsetHeight || window.pageYOffset || document.body.scrollTop;;
     var scrollH = document.documentElement.scrollTop;
 
     return (windowH + scrollH >= documentH - 60);
