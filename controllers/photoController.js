@@ -7,7 +7,7 @@ exports.photos = (req, res) => {
 
 
     const getData = querystring.stringify({
-        'count': 5,
+        'count': 30,
         'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
     })
 
