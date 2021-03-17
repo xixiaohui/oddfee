@@ -164,33 +164,13 @@ function insertOneRingtone(ringtone) {
 }
 
 
-// document.getElementById("myfoot").addEventListener('click', function() {
-//     isReachToBottomJavascript();
-//     isReachToBottomJavascriptSecond();
-// })
-
-// function isReachToBottomJavascript() {
-//     //网页可视区域高度
-//     var windowH = document.documentElement.clientHeight;
-//     var documentH = document.documentElement.offsetHeight || window.pageYOffset || document.body.scrollTop;
-//     var scrollH = document.documentElement.scrollTop;
-
-//     console.log("windowH = " + windowH);
-//     console.log("scrollH = " + scrollH);
-//     console.log("documentH = " + documentH);
-
-//     alert("windowH = " + windowH + "scrollH = " + scrollH + "documentH = " + documentH);
-//     return (windowH + scrollH >= documentH);
-// }
-
-// function isReachToBottomJavascriptSecond() {
-//     // @var int totalPageHeight
-//     var totalPageHeight = document.body.scrollHeight;
-
-//     // @var int scrollPoint
-//     var scrollPoint = window.scrollY + window.innerHeight;
-//     alert("totalPageHeight = " + totalPageHeight + "scrollPoint = " + scrollPoint);
-
-//     // check if we hit the bottom of the page
-//     return (scrollPoint >= totalPageHeight);
-// }
+//客户端使用http
+// const http = new XMLHttpRequest();
+// const url = "https://api.unsplash.com/photos/random?count=5&client_id=N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0";
+// http.open("GET", url);
+// http.send();
+// http.onreadystatechange = (e) => {
+//     if (this.readyState == 4 && this.status == 200) {
+//         console.log(http.responseText);
+//     }
+// };

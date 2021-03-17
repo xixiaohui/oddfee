@@ -78,17 +78,14 @@ exports.ringtone_catagory = (req, res) => {
 
     let keyword = url.split('/')[2].split('-')[0];
 
-
     console.log(keyword);
     if (keyword == 'Bollywood') {
         keyword = 'Hindi';
     }
 
-
     Ringtone.countDocuments({
         des: { $regex: keyword }
     }, (err, count) => {
-
         console.log(count);
         getDataByKeyWord(req, res, count, keyword);
     })
@@ -140,7 +137,6 @@ function getDataByKeyWord(req, res, count, keyword) {
 //从全部铃声中获取数据
 exports.ringtone_load_one_page = (req, res) => {
     sendRingtonesData(req, res);
-
     // res.send(data);
 }
 
