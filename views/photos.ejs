@@ -1,13 +1,28 @@
-<div class="card" style="width: 18rem;">
-    <img src="<%= data[0].urls.small %>" class="card-img-top" alt="<%= data[0].alt_description %>">
-    <div class="card-body">
-        <h5 class="card-title">
-            <%= data[0].views %> views
-                <%= data[0].downloads %> downloads
-        </h5>
-        <p class="card-text">
-            <%= data[0].links.description %>
-        </p>
-        <a href="<%= data[0].links.download %>" class="">Download</a>
+<%- include("header") %>
+
+    <div class="container-md mt-5">
+
+        <% for(var i=0; i<datas.length; i++) {%>
+
+
+            <div class="col-sm-6">
+                <div class="card mb-1">
+                    <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
+                    <div class="card-body">
+                        <h5 class="card-title">
+                            <%= datas[i].views %> views
+                                <%= datas[i].downloads %> downloads
+                        </h5>
+                        <p class="card-text">
+                            <%= datas[i].links.description %>
+                        </p>
+                        <a href="<%= datas[i].links.download %>" class="">Download</a>
+                    </div>
+                </div>
+            </div>
+
+            <% } %>
+
     </div>
-</div>
+
+    <%- include("foot") %>

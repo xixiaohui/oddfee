@@ -52,7 +52,7 @@ function getUnsplashData(myres, url) {
                 const parsedData = JSON.parse(rawData);
                 // console.log(parsedData);
 
-                myres.render('photos', { data: parsedData });
+                myres.render('photos', { datas: parsedData });
             } catch (e) {
                 console.error(e.message);
             }
