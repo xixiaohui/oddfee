@@ -53,8 +53,8 @@ function getDataFromMongodb(res) {
 router.get('/', function(req, res, next) {
 
     // getDataFromMongodb(res);
-    // res.render('index', { title: 'Express', data: ringtones });
-    res.redirect('/ringtone');
+    res.render('index', {});
+    // res.redirect('/ringtone');
 });
 // getDataFromMongodb();
 

@@ -27,7 +27,7 @@ app.use("/lib", express.static(path.join(__dirname, 'node_modules')));
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/ringtone', ringtoneRouter);
-app.use('/photos', photoRouter);
+app.use('/photoes', photoRouter);
 
 
 // catch 404 and forward to error handler

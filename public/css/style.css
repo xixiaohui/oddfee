@@ -117,3 +117,22 @@ a {
         visibility: hidden;
     }
 }
+
+
+/* welcome page*/
+
+.welcomepagetitle {
+    color: whitesmoke;
+}
+
+.welcomepagetitlesmall {
+    color: grey;
+}
+
+.welcome {
+    color: purple;
+}
+
+.welcomebutton {
+    height: 200px;
+}
