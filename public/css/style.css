@@ -133,6 +133,11 @@ a {
     color: purple;
 }
 
-.welcomebutton {
-    height: 200px;
+
+/* search */
+
+.abs-center-x {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }

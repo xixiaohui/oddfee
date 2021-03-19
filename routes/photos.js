@@ -15,4 +15,8 @@ const photo_controller = require('../controllers/photoController');
 router.get('/', photo_controller.photos);
 
 
+//搜索图片
+router.get('/search', photo_controller.photoSearch);
+
+
 module.exports = router;

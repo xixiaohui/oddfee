@@ -61,3 +61,9 @@ function getUnsplashData(myres, url) {
         console.error(`Got error: ${e.message}`);
     });
 }
+
+
+//搜索商品
+exports.photoSearch = (req, res) => {
+    res.render('photo_search', {});
+}
