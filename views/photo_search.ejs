@@ -1,17 +1,27 @@
 <%- include("header-photo") %>
-    <div class="container-md bg-warning">
 
-        <div class="abs-center-x mt-5">
+    <div class="container-md mt-5">
 
-            <h6 class="welcomepagetitlesmall">Find your favorite photo.</h6>
-
-
-        </div>
-
+        <h1>
+            <%= title  %>
+        </h1>
         <div>
+
+            <div>
+                <form action="/photoes/search" method="GET">
+                    <div class="form-group">
+                        <label for="searchInputText">Search photoes</label>
+                        <input type="text" class="form-control" id="searchInputText" placeholder="input here..." name="query">
+                        <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
+                    </div>
+
+                    <button type="submit" class="btn btn-primary">Search</button>
+                </form>
+            </div>
+
 
         </div>
 
     </div>
-
+    <script src="/js/search_photo.js"></script>
     <%- include("foot") %>

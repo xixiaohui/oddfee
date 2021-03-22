@@ -65,5 +65,9 @@ function getUnsplashData(myres, url) {
 
 //搜索商品
 exports.photoSearch = (req, res) => {
-    res.render('photo_search', {});
+
+    let keywords = res.body;
+    console.log(res.body);
+
+    res.render('photo_search', { title: "keywords", datas: {} });
 }
