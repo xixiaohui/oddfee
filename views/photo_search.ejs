@@ -6,6 +6,7 @@
             <%= title  %>
                 <%= total %>
         </h1> -->
+
         <div class="col-sm-6">
             <div>
                 <form action="/photoes/search" method="GET">
@@ -21,7 +22,7 @@
         </div>
 
         <% if (title) { %>
-            <div class="mt-5">
+            <div class="mt-5" id="photolist">
                 <% for(var i=0; i<datas.length; i++) {%>
 
                     <div class="col-sm-6">
@@ -32,7 +33,9 @@
                                     <%= datas[i].likes %> likes
                                 </h5>
                                 <p class="card-text">
-                                    <%= datas[i].description %>
+                                    <% if (datas[i].description) { %>
+                                        <%= datas[i].description %>
+                                            <% } %>
                                 </p>
                                 <a href="<%= datas[i].links.download %>" class="">Download</a>
                             </div>
@@ -41,7 +44,7 @@
                     <% } %>
             </div>
             <% } else{ %>
-                <div class="mt-5">
+                <div class="mt-5" id="photolist">
                     <% for(var i=0; i<datas.length; i++) {%>
 
                         <div class="col-sm-6">
@@ -64,6 +67,15 @@
                 <% } %>
 
 
+
+    </div>
+    <div id="loading" class="mt-5">
+        <div class="d-flex justify-content-center">
+            <div class="spinner-border text-light" role="status">
+                <span class="sr-only">Loading...</span>
+            </div>
+        </div>
     </div>
 
     <%- include("foot") %>
+        <script type="module" src="/js/photolist.js"></script>

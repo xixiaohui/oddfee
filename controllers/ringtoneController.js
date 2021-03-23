@@ -190,7 +190,7 @@ function sendRingtonesCatagoryData(req, res) {
         currentPage = 0;
     } else {
         currentPage = req.query.page - 1;
-        console.log(req.query.page);
+        console.log(currentPage);
     }
 
     let keyword = req.query.keyword;

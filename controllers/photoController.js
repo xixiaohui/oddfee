@@ -146,3 +146,85 @@ function getUnsplashSearchData(myres, url, keyword) {
         console.error(`Got error: ${e.message}`);
     });
 }
+
+//加载下一页图片数据
+exports.photo_load_one_page = (req, res) => {
+
+    const page = req.query.page;
+
+    const keyword = req.query.query;
+
+    console.log("page = " + page);
+    console.log("keyword = " + keyword);
+
+    sendPhotoesData(req, res, keyword);
+}
+
+function sendPhotoesData(req, myres, keyword) {
+    let currentPage = 1;
+
+    if (req.query.page == undefined) {
+        currentPage = 1;
+    } else {
+        currentPage = parseInt(req.query.page) + 1;
+        // console.log(currentPage);
+    }
+
+    // console.log("currentPage = " + currentPage);
+
+
+    // console.log(keyword);
+
+    const getData = querystring.stringify({
+        'query': keyword.toString(),
+        'page': currentPage.toString(),
+        'per_page': '10',
+        'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+    });
+
+    // console.log(getData);
+
+    const url = `https://api.unsplash.com/search/photos?${getData}`;
+
+    // console.log(url);
+
+    http.get(url, (res) => {
+        const { statusCode } = res;
+        const contentType = res.headers['content-type'];
+
+        let error;
+        // Any 2xx status code signals a successful response but
+        // here we're only checking for 200.
+        if (statusCode !== 200) {
+            error = new Error('Request Failed.\n' +
+                `Status Code: ${statusCode}`);
+        } else if (!/^application\/json/.test(contentType)) {
+            error = new Error('Invalid content-type.\n' +
+                `Expected application/json but received ${contentType}`);
+        }
+        if (error) {
+            console.error(error.message);
+            // Consume response data to free up memory
+            res.resume();
+            return;
+        }
+
+        res.setEncoding('utf8');
+        let rawData = '';
+        res.on('data', (chunk) => { rawData += chunk; });
+        res.on('end', () => {
+            try {
+                const parsedData = JSON.parse(rawData);
+                // console.log(parsedData);
+
+                myres.send(parsedData.results);
+
+            } catch (e) {
+                console.error(e.message);
+            }
+        });
+    }).on('error', (e) => {
+        console.error(`Got error: ${e.message}`);
+    });
+
+}

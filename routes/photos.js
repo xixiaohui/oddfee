@@ -19,4 +19,8 @@ router.get('/', photo_controller.photos);
 router.get('/search', photo_controller.photoSearch);
 
 
+//请求图片数据
+router.get('/data', photo_controller.photo_load_one_page);
+
+
 module.exports = router;
