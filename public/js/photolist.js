@@ -56,6 +56,13 @@ function addLoadingData() {
     const keyword = window.location.href.split('=')[1];
 
     console.log(keyword);
+
+    let randomPhotoes = false;
+    if (typeof(keyword) == "undefined") {
+        randomPhotoes = true;
+        console.log("random photo");
+    }
+
     //存入session
     window.sessionStorage.setItem('currentPhotoPage', currentPage);
 
@@ -82,7 +89,7 @@ function addLoadingData() {
             //增加当前页
             currentPage += 1;
             //插入加载的图片到页面
-            insertPhotoesDatatToHtml(results)
+            insertPhotoesDatatToHtml(results, randomPhotoes);
 
             //结束显示loading
             document.getElementById('loading').setAttribute("style", "visibility:hidden");
@@ -94,27 +101,59 @@ function addLoadingData() {
 }
 
 //区别手机和PC 插入从后端加载的数据
-function insertPhotoesDatatToHtml(results) {
+function insertPhotoesDatatToHtml(results, isRandom) {
     //把数据添加到页面上去 只有移动端插入数据
     if (isMobile()) {
         // window.location.href="移动端url";
         // alert("mobile");
-        insertArrayPhotoes(results);
+        insertArrayPhotoes(results, isRandom);
     } else {
         // alert("pc")
     }
 }
 
-//插入一组铃声
-function insertArrayPhotoes(photoes) {
+//插入一组图片
+function insertArrayPhotoes(photoes, isRandom) {
 
     for (let index = 0; index < photoes.length; index++) {
         const element = photoes[index];
-        insertOnePhoto(element);
+
+        if (isRandom) {
+            insertOneRandomPhoto(element);
+        } else {
+            insertOnePhoto(element);
+        }
+
     }
 }
 
-//插入一个图片
+//插入一个图片(没有关键字的)
+function insertOneRandomPhoto(photo) {
+
+    let photo_list = document.querySelector('#photolist');
+
+    let popContent = [
+        `<div class="col-sm-6">`,
+        `<div class="card mb-1">`,
+        `<img src="${photo.urls.small}" class="card-img-top" alt="${ photo.alt_description }">`,
+        `<div class="card-body">`,
+        `<h5 class="card-title">`,
+        `${photo.views } views`,
+        `${ photo.downloads } downloads`,
+        `</h5>`,
+        `<p class="card-text">`,
+        `${photo.links.description }`,
+        `</p>`,
+        `<a href="${photo.links.download }" class="">Download</a>`,
+        `</div>`,
+        `</div>`,
+        `</div>`,
+    ].join('');
+
+    photo_list.innerHTML += popContent;
+}
+
+//插入一个图片(有关键字的)
 function insertOnePhoto(photo) {
 
     let photo_list = document.querySelector('#photolist');

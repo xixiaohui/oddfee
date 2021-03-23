@@ -157,9 +157,18 @@ exports.photo_load_one_page = (req, res) => {
     console.log("page = " + page);
     console.log("keyword = " + keyword);
 
-    sendPhotoesData(req, res, keyword);
+
+    if (keyword != "undefined") {
+        console.log("have keyword");
+        sendPhotoesData(req, res, keyword);
+    } else {
+        console.log("no keyword");
+        sendPhotoesDataNoKeyword(req, res);
+    }
+
 }
 
+//有关键词的搜索
 function sendPhotoesData(req, myres, keyword) {
     let currentPage = 1;
 
@@ -169,11 +178,6 @@ function sendPhotoesData(req, myres, keyword) {
         currentPage = parseInt(req.query.page) + 1;
         // console.log(currentPage);
     }
-
-    // console.log("currentPage = " + currentPage);
-
-
-    // console.log(keyword);
 
     const getData = querystring.stringify({
         'query': keyword.toString(),
@@ -219,6 +223,58 @@ function sendPhotoesData(req, myres, keyword) {
 
                 myres.send(parsedData.results);
 
+            } catch (e) {
+                console.error(e.message);
+            }
+        });
+    }).on('error', (e) => {
+        console.error(`Got error: ${e.message}`);
+    });
+
+}
+
+//没有关键词的分页数据
+function sendPhotoesDataNoKeyword(req, myres) {
+
+    const getData = querystring.stringify({
+        'count': 20,
+        'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+    })
+
+    const url = `https://api.unsplash.com/photos/random?${getData}`;
+
+    // console.log(url);
+
+    http.get(url, (res) => {
+        const { statusCode } = res;
+        const contentType = res.headers['content-type'];
+
+        let error;
+        // Any 2xx status code signals a successful response but
+        // here we're only checking for 200.
+        if (statusCode !== 200) {
+            error = new Error('Request Failed.\n' +
+                `Status Code: ${statusCode}`);
+        } else if (!/^application\/json/.test(contentType)) {
+            error = new Error('Invalid content-type.\n' +
+                `Expected application/json but received ${contentType}`);
+        }
+        if (error) {
+            console.error(error.message);
+            // Consume response data to free up memory
+            res.resume();
+            return;
+        }
+
+        res.setEncoding('utf8');
+        let rawData = '';
+        res.on('data', (chunk) => { rawData += chunk; });
+        res.on('end', () => {
+            try {
+                const parsedData = JSON.parse(rawData);
+                // console.log(parsedData);
+
+                myres.send(parsedData);
             } catch (e) {
                 console.error(e.message);
             }
