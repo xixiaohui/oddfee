@@ -6,7 +6,7 @@
             <%= title  %>
                 <%= total %>
         </h1> -->
-        <div>
+        <div class="col-sm-6">
             <div>
                 <form action="/photoes/search" method="GET">
                     <div class="form-group">
@@ -15,30 +15,53 @@
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                     </div>
 
-                    <button type="submit" class="btn btn-primary">Search</button>
+                    <button type="submit" class="btn btn-primary bg-info">Search</button>
                 </form>
             </div>
         </div>
-        <div class="mt-5">
-            <% for(var i=0; i<datas.length; i++) {%>
 
-                <div class="col-sm-6">
-                    <div class="card mb-1">
-                        <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
-                        <div class="card-body">
-                            <h5 class="card-title">
-                                <%= datas[i].views %> views
-                                    <%= datas[i].downloads %> downloads
-                            </h5>
-                            <p class="card-text">
-                                <%= datas[i].links.description %>
-                            </p>
-                            <a href="<%= datas[i].links.download %>" class="">Download</a>
+        <% if (title) { %>
+            <div class="mt-5">
+                <% for(var i=0; i<datas.length; i++) {%>
+
+                    <div class="col-sm-6">
+                        <div class="card mb-1">
+                            <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
+                            <div class="card-body">
+                                <h5 class="card-title">
+                                    <%= datas[i].likes %> likes
+                                </h5>
+                                <p class="card-text">
+                                    <%= datas[i].description %>
+                                </p>
+                                <a href="<%= datas[i].links.download %>" class="">Download</a>
+                            </div>
                         </div>
                     </div>
+                    <% } %>
+            </div>
+            <% } else{ %>
+                <div class="mt-5">
+                    <% for(var i=0; i<datas.length; i++) {%>
+
+                        <div class="col-sm-6">
+                            <div class="card mb-1">
+                                <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <%= datas[i].views %> views
+                                            <%= datas[i].downloads %> downloads
+                                    </h5>
+                                    <p class="card-text">
+                                        <%= datas[i].links.description %>
+                                    </p>
+                                    <a href="<%= datas[i].links.download %>" class="">Download</a>
+                                </div>
+                            </div>
+                        </div>
+                        <% } %>
                 </div>
                 <% } %>
-        </div>
 
 
     </div>

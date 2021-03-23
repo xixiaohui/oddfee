@@ -5,7 +5,11 @@ const querystring = require('querystring')
 //https://api.unsplash.com/photos/random?client_id=N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0
 exports.photos = (req, res) => {
 
+    getUnsplashRandomPhotos(res);
 
+}
+
+function getUnsplashRandomPhotos(res) {
     const getData = querystring.stringify({
         'count': 30,
         'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
@@ -13,13 +17,7 @@ exports.photos = (req, res) => {
 
     const url = `https://api.unsplash.com/photos/random?${getData}`;
 
-    console.log(url);
-
-    // let url = "https://api.unsplash.com/photos/random?client_id=N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0";
-
     getUnsplashData(res, url);
-
-    // res.render('photos', {});
 }
 
 function getUnsplashData(myres, url) {
@@ -67,28 +65,43 @@ function getUnsplashData(myres, url) {
 exports.photoSearch = (req, res) => {
 
     let keyword = req.query.query;
-    console.log(keyword);
+    // console.log(keyword);
+    let page = req.query.page;
 
-    getPhotoesByKeyWord(res, keyword)
+    getPhotoesByKeyWord(res, keyword, page);
 }
 
 //根据关键词搜索图片
-function getPhotoesByKeyWord(res, keyword) {
+function getPhotoesByKeyWord(res, keyword, page) {
 
+    //默认没有搜索，没有关键词使用随机图片数据
+    if (!keyword) {
+        const getData = querystring.stringify({
+            'count': 10,
+            'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+        })
+
+        const url = `https://api.unsplash.com/photos/random?${getData}`;
+
+        getUnsplashSearchData(res, url, "");
+        return;
+    }
+    //有了关键词，就默认第一页
+    if (!page) {
+        page = 1;
+    }
     const getData = querystring.stringify({
         'query': keyword,
+        'page': page,
         'per_page': '10',
         'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
     })
 
     const url = `https://api.unsplash.com/search/photos?${getData}`;
 
-    console.log(url);
-
-
     getUnsplashSearchData(res, url, keyword);
-
 }
+
 
 function getUnsplashSearchData(myres, url, keyword) {
     http.get(url, (res) => {
@@ -118,9 +131,13 @@ function getUnsplashSearchData(myres, url, keyword) {
         res.on('end', () => {
             try {
                 const parsedData = JSON.parse(rawData);
-                console.log(parsedData);
+                // console.log(parsedData);
+                if (keyword) {
+                    myres.render('photo_search', { title: keyword, total: parsedData.total, datas: parsedData.results });
+                } else {
+                    myres.render('photo_search', { title: keyword, total: parsedData.total, datas: parsedData });
+                }
 
-                myres.render('photo_search', { title: keyword, total: parsedData.total, datas: parsedData.results });
             } catch (e) {
                 console.error(e.message);
             }
