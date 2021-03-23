@@ -66,8 +66,66 @@ function getUnsplashData(myres, url) {
 //搜索商品
 exports.photoSearch = (req, res) => {
 
-    let keywords = res.body;
-    console.log(res.body);
+    let keyword = req.query.query;
+    console.log(keyword);
 
-    res.render('photo_search', { title: "keywords", datas: {} });
+    getPhotoesByKeyWord(res, keyword)
+}
+
+//根据关键词搜索图片
+function getPhotoesByKeyWord(res, keyword) {
+
+    const getData = querystring.stringify({
+        'query': keyword,
+        'per_page': '10',
+        'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+    })
+
+    const url = `https://api.unsplash.com/search/photos?${getData}`;
+
+    console.log(url);
+
+
+    getUnsplashSearchData(res, url, keyword);
+
+}
+
+function getUnsplashSearchData(myres, url, keyword) {
+    http.get(url, (res) => {
+        const { statusCode } = res;
+        const contentType = res.headers['content-type'];
+
+        let error;
+        // Any 2xx status code signals a successful response but
+        // here we're only checking for 200.
+        if (statusCode !== 200) {
+            error = new Error('Request Failed.\n' +
+                `Status Code: ${statusCode}`);
+        } else if (!/^application\/json/.test(contentType)) {
+            error = new Error('Invalid content-type.\n' +
+                `Expected application/json but received ${contentType}`);
+        }
+        if (error) {
+            console.error(error.message);
+            // Consume response data to free up memory
+            res.resume();
+            return;
+        }
+
+        res.setEncoding('utf8');
+        let rawData = '';
+        res.on('data', (chunk) => { rawData += chunk; });
+        res.on('end', () => {
+            try {
+                const parsedData = JSON.parse(rawData);
+                console.log(parsedData);
+
+                myres.render('photo_search', { title: keyword, total: parsedData.total, datas: parsedData.results });
+            } catch (e) {
+                console.error(e.message);
+            }
+        });
+    }).on('error', (e) => {
+        console.error(`Got error: ${e.message}`);
+    });
 }
