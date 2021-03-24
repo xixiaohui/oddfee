@@ -127,6 +127,7 @@ a {
 
 .welcomepagetitlesmall {
     color: grey;
+    font-family: myword;
 }
 
 .welcome {
@@ -155,4 +156,16 @@ a {
 .col-sm-6 {
     padding-left: 0;
     padding-right: 0;
+}
+
+.area {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+
+/** photo download info */
+
+.myphotoinfo {
+    margin-right: 30px;
 }

@@ -11,12 +11,12 @@
             <div class="col-sm-6">
                 <form action="/photoes/search" method="GET">
                     <div class="form-group">
-                        <label for="searchInputText">Search photoes</label>
-                        <input type="text" class="form-control" id="searchInputText" placeholder="input here..." name="query">
+                        <!-- <label for="searchInputText">Search photoes</label> -->
+                        <input type="text" class="form-control card-text" id="searchInputText" placeholder="input here..." name="query">
                         <!-- <small id="emailHelp" class="form-text text-muted">We'll never share your email with anyone else.</small> -->
                     </div>
 
-                    <button type="submit" class="btn btn-primary bg-info">Search</button>
+                    <button type="submit" class="btn btn-primary bg-info card-title">Search</button>
                 </form>
             </div>
         </div>
@@ -30,14 +30,16 @@
                             <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
                             <div class="card-body">
                                 <h5 class="card-title">
-                                    <%= datas[i].likes %> likes
+                                    <%= datas[i].likes %> likes <img src="/lib/bootstrap-icons/icons/heart-fill.svg" alt="" width="14" height="14" title="like photo">
                                 </h5>
                                 <p class="card-text">
                                     <% if (datas[i].description) { %>
                                         <%= datas[i].description %>
                                             <% } %>
                                 </p>
-                                <a href="<%= datas[i].links.download %>" class="">Download</a>
+                                <a href="<%= datas[i].links.download %>">
+                                    <h5 class="card-title">Download <img src="/lib/bootstrap-icons/icons/cloud-arrow-down.svg" alt="" width="12" height="12" title="download photo"></h5>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -51,15 +53,25 @@
                             <div class="card">
                                 <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
                                 <div class="card-body">
-                                    <h5 class="card-title">
-                                        <%= datas[i].views %> views
-                                            <%= datas[i].downloads %> downloads
-                                                <%= datas[i].likes %> likes
-                                    </h5>
+
+                                    <div class="card-title">
+                                        <span class="myphotoinfo">
+                                            <%= datas[i].views %> views <img src="/lib/bootstrap-icons/icons/eye.svg" alt="" width="14" height="14" title="view photo">
+                                        </span>
+                                        <span class="myphotoinfo">
+                                            <%= datas[i].downloads %> <img src="/lib/bootstrap-icons/icons/cloud-arrow-down.svg" alt="" width="14" height="14" title="download photo">
+                                        </span>
+                                        <span class="myphotoinfo">
+                                            <%= datas[i].likes %> likes <img src="/lib/bootstrap-icons/icons/heart-fill.svg" alt="" width="14" height="14" title="like photo">
+                                        </span>
+                                    </div>
                                     <p class="card-text">
                                         <%= datas[i].links.description %>
                                     </p>
-                                    <a href="<%= datas[i].links.download %>" class="">Download</a>
+                                    <a href="<%= datas[i].links.download %>">
+                                        <h5 class="card-title">Download <img src="/lib/bootstrap-icons/icons/cloud-arrow-down.svg" alt="" width="12" height="12" title="download photo"></h5>
+                                    </a>
+
                                 </div>
                             </div>
                         </div>
