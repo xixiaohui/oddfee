@@ -1,7 +1,6 @@
 import { isReachToBottom, isMobile, loadCatagoriesTag } from './global.js';
 
 
-
 let startLoading = true;
 
 window.onscroll = function() {
@@ -42,8 +41,8 @@ window.onload = function() {
         if (typeof(keyword) == "undefined") {
             randomPhotoes = true;
             console.log("random photo");
+            insertPhotoesDatatToHtml(allPhotos, randomPhotoes);
         }
-        insertPhotoesDatatToHtml(allPhotos, randomPhotoes);
     }
 }
 
