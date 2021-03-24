@@ -141,3 +141,18 @@ a {
     left: 50%;
     transform: translateX(-50%);
 }
+
+.searcharea {
+    padding-left: 30px;
+    padding-right: 30px;
+}
+
+.container-md {
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col-sm-6 {
+    padding-left: 0;
+    padding-right: 0;
+}

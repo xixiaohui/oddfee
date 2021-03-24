@@ -7,8 +7,8 @@
                 <%= total %>
         </h1> -->
 
-        <div class="col-sm-6">
-            <div>
+        <div class="searcharea">
+            <div class="col-sm-6">
                 <form action="/photoes/search" method="GET">
                     <div class="form-group">
                         <label for="searchInputText">Search photoes</label>
@@ -26,7 +26,7 @@
                 <% for(var i=0; i<datas.length; i++) {%>
 
                     <div class="col-sm-6">
-                        <div class="card mb-1">
+                        <div class="card">
                             <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
                             <div class="card-body">
                                 <h5 class="card-title">
@@ -48,7 +48,7 @@
                     <% for(var i=0; i<datas.length; i++) {%>
 
                         <div class="col-sm-6">
-                            <div class="card mb-1">
+                            <div class="card">
                                 <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
                                 <div class="card-body">
                                     <h5 class="card-title">
