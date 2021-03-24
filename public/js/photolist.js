@@ -22,27 +22,27 @@ window.onscroll = function() {
 
 window.onload = function() {
 
+    const keyword = window.location.href.split('=')[1];
+    console.log(keyword);
+    let randomPhotoes = false;
+    if (typeof(keyword) == "undefined") {
+        randomPhotoes = true;
+        console.log("random photo");
+    }
 
     //加载session storage 存储的数据
     //在首页把页面加载的铃声全部在手机加载的时候加入到页面中
     let sessionStoragePhotoes = window.sessionStorage.getItem('photoes');
-    if (sessionStoragePhotoes != null) {
+
+    //只有在随机的时候才把内容插入记录
+    if (sessionStoragePhotoes != null && randomPhotoes) {
 
         let results = JSON.parse(sessionStoragePhotoes);
         // console.log(results);
         allPhotos = results;
 
         //把sessionStorage里存的铃声对象全部插入到页面
-        const keyword = window.location.href.split('=')[1];
-
-        console.log(keyword);
-
-        let randomPhotoes = false;
-        if (typeof(keyword) == "undefined") {
-            randomPhotoes = true;
-            console.log("random photo");
-            insertPhotoesDatatToHtml(allPhotos, randomPhotoes);
-        }
+        insertPhotoesDatatToHtml(allPhotos, randomPhotoes);
     }
 }
 
