@@ -131,18 +131,22 @@ function insertArrayPhotoes(photoes, isRandom) {
 function insertOneRandomPhoto(photo) {
 
     let photo_list = document.querySelector('#photolist');
-
+    let des = photo.description;
+    if (des === null || typeof(des) == "undefined") {
+        des = ""
+    }
     let popContent = [
         `<div class="col-sm-6">`,
-        `<div class="card mb-1">`,
+        `<div class="card">`,
         `<img src="${photo.urls.small}" class="card-img-top" alt="${ photo.alt_description }">`,
         `<div class="card-body">`,
         `<h5 class="card-title">`,
-        `${photo.views } views`,
-        `${ photo.downloads } downloads`,
+        `${photo.views } views `,
+        ` ${ photo.downloads } downloads `,
+        ` ${ photo.likes } likes`,
         `</h5>`,
         `<p class="card-text">`,
-        `${photo.links.description }`,
+        `${des }`,
         `</p>`,
         `<a href="${photo.links.download }" class="">Download</a>`,
         `</div>`,
@@ -157,17 +161,21 @@ function insertOneRandomPhoto(photo) {
 function insertOnePhoto(photo) {
 
     let photo_list = document.querySelector('#photolist');
+    let des = photo.description
+    if (des === null) {
+        des = ""
+    }
 
     let popContent = [
         `<div class="col-sm-6">`,
-        `<div class="card mb-1">`,
+        `<div class="card">`,
         `<img src="${photo.urls.small}" class="card-img-top" alt="${photo.alt_description}">`,
         `<div class="card-body">`,
         `<h5 class="card-title">`,
         `${photo.likes} likes`,
         `</h5>`,
         `<p class="card-text">`,
-        `${photo.description}`,
+        `${des}`,
         `</p>`,
         `<a href="${photo.links.download}" class="">Download</a>`,
         `</div>`,
