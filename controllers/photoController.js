@@ -1,6 +1,9 @@
 const http = require('https');
 const querystring = require('querystring')
 
+
+const client_id = '6DeTp_SKWfb8fHBiX8gx-XBdkXxKqWNcjus0GuN2AKg';
+
 //随机获取一张照片
 //https://api.unsplash.com/photos/random?client_id=N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0
 exports.photos = (req, res) => {
@@ -12,7 +15,7 @@ exports.photos = (req, res) => {
 function getUnsplashRandomPhotos(res) {
     const getData = querystring.stringify({
         'count': 30,
-        'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+        'client_id': client_id
     })
 
     const url = `https://api.unsplash.com/photos/random?${getData}`;
@@ -78,7 +81,7 @@ function getPhotoesByKeyWord(res, keyword, page) {
     if (!keyword) {
         const getData = querystring.stringify({
             'count': 10,
-            'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+            'client_id': client_id
         })
 
         const url = `https://api.unsplash.com/photos/random?${getData}`;
@@ -94,7 +97,7 @@ function getPhotoesByKeyWord(res, keyword, page) {
         'query': keyword,
         'page': page,
         'per_page': '10',
-        'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+        'client_id': client_id
     })
 
     const url = `https://api.unsplash.com/search/photos?${getData}`;
@@ -183,7 +186,7 @@ function sendPhotoesData(req, myres, keyword) {
         'query': keyword.toString(),
         'page': currentPage.toString(),
         'per_page': '10',
-        'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+        'client_id': client_id
     });
 
     // console.log(getData);
@@ -238,12 +241,10 @@ function sendPhotoesDataNoKeyword(req, myres) {
 
     const getData = querystring.stringify({
         'count': 20,
-        'client_id': 'N_KJgUFKI94Gadt6yOoT1yzvJxv2YxzlJrNN-IGwpc0'
+        'client_id': client_id
     })
 
     const url = `https://api.unsplash.com/photos/random?${getData}`;
-
-    // console.log(url);
 
     http.get(url, (res) => {
         const { statusCode } = res;
