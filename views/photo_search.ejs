@@ -29,6 +29,11 @@
                         <div class="card">
                             <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
                             <div class="card-body">
+                                <p class="card-text">Photo by
+                                    <a href="https://unsplash.com/@<%= datas[i].user.username %>?utm_source=oddfee&utm_medium=referral">
+                                        <%= datas[i].user.name %>
+                                    </a> on <a href="https://unsplash.com/?utm_source=oddfee&utm_medium=referral">Unsplash</a>
+                                </p>
                                 <h5 class="card-title">
                                     <%= datas[i].likes %> likes <img src="/lib/bootstrap-icons/icons/heart-fill.svg" alt="" width="14" height="14" title="like photo">
                                 </h5>
@@ -53,7 +58,11 @@
                             <div class="card">
                                 <img src="<%= datas[i].urls.small %>" class="card-img-top" alt="<%= datas[i].alt_description %>">
                                 <div class="card-body">
-
+                                    <p class="card-text">Photo by
+                                        <a href="https://unsplash.com/@<%= datas[i].user.username %>?utm_source=oddfee&utm_medium=referral">
+                                            <%= datas[i].user.name %>
+                                        </a> on <a href="https://unsplash.com/?utm_source=oddfee&utm_medium=referral">Unsplash</a>
+                                    </p>
                                     <div class="card-title">
                                         <span class="myphotoinfo">
                                             <%= datas[i].views %> views <img src="/lib/bootstrap-icons/icons/eye.svg" alt="" width="14" height="14" title="view photo">
