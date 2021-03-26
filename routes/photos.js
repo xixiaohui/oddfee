@@ -23,4 +23,7 @@ router.get('/search', photo_controller.photoSearch);
 router.get('/data', photo_controller.photo_load_one_page);
 
 
+//下载图片
+router.get('/download', photo_controller.photo_download);
+
 module.exports = router;
