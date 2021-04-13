@@ -4,13 +4,13 @@ var fs = require('fs');
 var multer = require('multer')
 let path = require("path");
 
-var upload = multer({ dest: '/public/images/privatestore/mystore/' });
+var upload = multer({ dest: '../public/images/privatestore/mystore/' });
 
 //上传文件配置  
 const storage = multer.diskStorage({
     //文件存储位置  
     destination: (req, file, cb) => {
-        cb(null, path.resolve(__dirname, '/public/images/privatestore/mystore/'));
+        cb(null, path.resolve(__dirname, '../public/images/privatestore/mystore/'));
     },
     //文件名  
     filename: (req, file, cb) => {
@@ -58,13 +58,13 @@ router.post('/api/upload', async(req, res) => {
     let upload = multer(uploadCfg).any();
     upload(req, res, async(err) => {
         if (err) {
-            res.json({ path: `//public/images/privatestore/mystore/${uploadFile.filename}` });
+            res.json({ path: `/images/privatestore/mystore/${uploadFile.filename}` });
             console.log(err);
             return;
         };
         console.log(req.files);
         let uploadFile = req.files[0];
-        res.json({ path: `//public/images/privatestore/mystore/${uploadFile.filename}` });
+        res.json({ path: `/images/privatestore/mystore/${uploadFile.filename}` });
     });
 
 });
