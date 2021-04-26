@@ -16,6 +16,8 @@ exports.foodToday = (req, res) => {
 //登录
 exports.login = (req, myres) => {
     let js_code = req.query.code;
+    console.log(js_code)
+
     const getData = querystring.stringify({
         'appid': 'wx6a37da79d109ef5e',
         'secret': '08b722d4805d613ffc88960d1f2257b2',
@@ -25,6 +27,8 @@ exports.login = (req, myres) => {
     })
 
     const url = `https://api.weixin.qq.com/sns/jscode2session?${getData}`;
+
+    console.log(url);
 
     http.get(url, (res) => {
         const { statusCode } = res;
@@ -36,10 +40,11 @@ exports.login = (req, myres) => {
         if (statusCode !== 200) {
             error = new Error('Request Failed.\n' +
                 `Status Code: ${statusCode}`);
-        } else if (!/^application\/json/.test(contentType)) {
-            error = new Error('Invalid content-type.\n' +
-                `Expected application/json but received ${contentType}`);
         }
+        //  else if (!/^application\/json/.test(contentType)) {
+        //     error = new Error('Invalid content-type.\n' +
+        //         `Expected application/json but received ${contentType}`);
+        // }
         if (error) {
             console.error(error.message);
             // Consume response data to free up memory
@@ -53,7 +58,7 @@ exports.login = (req, myres) => {
         res.on('end', () => {
             try {
                 const parsedData = JSON.parse(rawData);
-                // console.log(parsedData);
+                // console.log(rawData);
 
                 myres.send(parsedData)
             } catch (e) {
