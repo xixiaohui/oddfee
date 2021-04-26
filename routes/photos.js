@@ -25,8 +25,6 @@ const uploadCfg = {
     }
 }
 
-
-
 // const { pathToRegexp, match, parse, compile } = require("path-to-regexp");
 
 const router = express.Router();

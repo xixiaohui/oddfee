@@ -17,5 +17,6 @@ router.get('/', food_controller.foodToday);
 // router.get('/:id', ringtone_controller.ringtone_list);
 
 
+router.get('/login', food_controller.login);
 
 module.exports = router;
